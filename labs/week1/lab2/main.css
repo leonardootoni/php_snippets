@@ -1,6 +1,10 @@
 .header {
   background-color: gray;
   margin-bottom: 1rem;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
 }
 .title-header {
   font: bold;
@@ -8,10 +12,23 @@
   font-size: 4rem;
 }
 
+main {
+  margin-top: 6rem;
+}
+
 footer {
   margin-top: 1rem;
   padding-top: 1rem;
   background-color: gray;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 2rem;
+
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
 }
 
 form > div {

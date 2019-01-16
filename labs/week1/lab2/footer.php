@@ -1,6 +1,6 @@
 <footer>
-    This is the footer
+    <div>This is the footer</div>
 </footer>
-    <script src="main.js"></script>
+    
 </body>
 </html>

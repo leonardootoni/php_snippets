@@ -25,4 +25,5 @@
         <input type="submit" value="Submit" id="submitBtn">
     </form>
 </main>
+<script src="main.js"></script>
 <?php require_once "footer.php"?>
