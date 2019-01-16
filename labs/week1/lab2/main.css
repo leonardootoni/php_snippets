@@ -1,0 +1,19 @@
+.header {
+  background-color: gray;
+  margin-bottom: 1rem;
+}
+.title-header {
+  font: bold;
+  font-weight: 700;
+  font-size: 4rem;
+}
+
+footer {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  background-color: gray;
+}
+
+form > div {
+  margin-bottom: 0.8em;
+}
