@@ -22,5 +22,8 @@
             <input type="number" name="qty" id="qty" min="0" step="1" value="1">
             <input type="submit" value="Add to Cart">
         </div>
+        <label for="test">Test:</label>
+        <input type="checkbox" name="test" id="test"> This is a test
+        <input type="checkbox" name="vehicle1"> I have a bike<br>
     </form>
 </main>
