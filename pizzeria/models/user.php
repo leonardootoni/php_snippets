@@ -4,12 +4,11 @@
  * Author: Leonardo Otoni
  */
 require_once "../database/database.php";
+require_once "../util/constants.php";
 
-function registerUser($email, $firstName, $lastName, $password, $birthday)
+function registerUser($email, $firstName, $lastName, $hash, $birthday)
 {
     global $db;
-    $password = generatePassword($email, $password);
-
     $query = "insert into USER (EMAIL, FIRST_NAME, LAST_NAME, PASSWORD, BIRTHDAY, BLOCKED, RECORD_CREATION) " .
         "values(:email, :firstName, :lastName, :password, :birthday, :blocked, :recordCreation )";
 
@@ -17,7 +16,7 @@ function registerUser($email, $firstName, $lastName, $password, $birthday)
     $statement->bindValue(":email", $email);
     $statement->bindValue(":firstName", $firstName);
     $statement->bindValue(":lastName", $lastName);
-    $statement->bindValue(":password", $password);
+    $statement->bindValue(":password", $hash);
     $statement->bindValue(":birthday", date("Y-m-d"));
     $statement->bindValue(":blocked", "N");
     $statement->bindValue(":recordCreation", date("Y-m-d"));
@@ -32,42 +31,43 @@ function registerUser($email, $firstName, $lastName, $password, $birthday)
 
 }
 
-function authenticateUser($email, $password)
+function authenticateUser($email, $hash)
 {
-    $isAuthenticated = false;
 
-    try {
-        $passwordFromDB = getUserPasswordFromDB($email);
-        $passwordGenerated = generatePassword($email, $password);
-        $isAuthenticated = (isset($passwordFromDB) && ($passwordFromDB == $passwordGenerated)) ? true : false;
-    } catch (Exception $e) {
-        $isAuthenticated = false;
+    $userData = getUserPasswordFromDB($email);
+    $hashFromDB = $userData["password"];
+    unset($userData['password']);
+    $isAuthenticated = (isset($hashFromDB) && ($hashFromDB == $hash)) ? true : false;
+    if ($isAuthenticated) {
+        return $userData;
+    } else {
+        throw new Exception(INVALID_USER_PASSWORD_EXCEPTION);
     }
-
-    return $isAuthenticated;
 
 }
 
 function getUserPasswordFromDB($email)
 {
-    $query = "select password from user where email = :email and blocked='N'";
+    $query = "select id, first_name, password from user where email = :email and blocked='N'";
     global $db;
     $statement = $db->prepare($query);
     $statement->bindValue(":email", $email);
 
     try {
         $statement->execute();
-        $resultSet = $statement->fetch();
-        return $resultSet['password'];
-    } catch (Exception $e) {
-        throw new Exception($e->getMessage());
+        if ($statement->rowCount() == 1) {
+            $resultSet = $statement->fetch();
+            $userArray = array("userId" => $resultSet["id"], "firstName" => $resultSet["first_name"], "password" => $resultSet["password"]);
+            return $userArray;
+
+        } else {
+            throw new Exception(USER_NOT_FOUND_EXCEPTION);
+        }
+
+    } catch (PDOException $e) {
+        throw $e->getMessage();
     } finally {
         $statement->closeCursor();
     }
 
-}
-
-function generatePassword($email, $password)
-{
-    return sha1($email . $password);
 }

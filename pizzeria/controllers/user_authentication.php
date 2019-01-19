@@ -1,14 +1,17 @@
 <?php
+
+require_once "../util/constants.php";
+require_once "../models/user.php";
+
 $email = filter_input(INPUT_POST, 'email');
-$password = filter_input(INPUT_POST, 'password');
+$hash = filter_input(INPUT_POST, 'hash');
 
-require_once "../model/user.php";
-
-$authenticated = authenticateUser($email, $password);
-if ($authenticated) {
+session_start();
+try {
+    $userData = authenticateUser($email, $hash);
     header("Location: ../views/home.php");
-} else {
-    session_start();
-    $_SESSION[USER_REGISTRATION_ERROR] = "Email or Password is not valid.";
+    $_SESSION[USER_SESSION_DATA] = $userData;
+} catch (Exception $e) {
+    $_SESSION[USER_REGISTRATION_ERROR] = USER_AUTHENTICATION_ERROR_MSG;
     header("Location: ../login.php");
 }

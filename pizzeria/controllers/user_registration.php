@@ -4,16 +4,16 @@
  * Author: Leonardo Otoni
  */
 require_once "../util/constants.php";
+require_once '../models/user.php';
 
 $email = filter_input(INPUT_POST, 'email');
 $firstName = filter_input(INPUT_POST, 'firstName');
 $lastName = filter_input(INPUT_POST, 'lastName');
 $birthday = filter_input(INPUT_POST, 'birthday');
-$password = filter_input(INPUT_POST, 'password');
+$hash = filter_input(INPUT_POST, 'hash');
 
-require_once '../model/user.php';
 try {
-    registerUser($email, $firstName, $lastName, $password, $birthday);
+    registerUser($email, $firstName, $lastName, $hash, $birthday);
     header("Location: ../login.php");
 } catch (Exception $e) {
     session_start();

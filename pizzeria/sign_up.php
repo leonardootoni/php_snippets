@@ -11,12 +11,13 @@
 session_start();if (isset($_SESSION[USER_REGISTRATION_ERROR])): ?>
         <div>
             <h4>
-                <?php echo $_SESSION[USER_REGISTRATION_ERROR];unset($_SESSION[USER_REGISTRATION_ERROR]); ?>
+                <?php echo $_SESSION[USER_REGISTRATION_ERROR];
+session_destroy(); ?>
             </h4>
         </div>
     <?php endif;?>
     <div>
-        <form action="controller/user_registration.php" method="POST">
+        <form action="controllers/user_registration.php" method="POST">
             <div>
                 <label for="email">Email:</label>
                 <input type="text" name="email" id="email" size="50" with="50">
@@ -36,15 +37,18 @@ session_start();if (isset($_SESSION[USER_REGISTRATION_ERROR])): ?>
             <div>
                 <label for="password">Password:</label>
                 <input type="password" name="password" id="password" size="50" with="50">
+                <input type="hidden" name="hash" id="hash">
             </div>
             <div>
                 <label for="confirmPassword">Confirm Password:</label>
                 <input type="password" name="confirmPassword" id="confirmPassword" size="50" with="50">
             </div>
             <div>
-                <input type="submit" value="Register">
+                <input id="submitBtn" type="submit" value="Register">
             </div>
         </form>
     </div>
+    <script src="static/js/sha1.min.js"></script>
+    <script src="static/js/hash_procedures.js"></script>
 </body>
 </html>

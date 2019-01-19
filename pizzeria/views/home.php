@@ -1,3 +1,11 @@
+<?php
+require_once "../util/security_filter.php";
+
+//Basic user information
+$userData = $_SESSION[USER_SESSION_DATA];
+$firstName = $userData["firstName"];
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,8 +15,10 @@
     <title>Document</title>
 </head>
 <body>
-    <?php if (isset($authenticated)): ?>
-        <h1>Congratulations! User authenticated!</h1>
+    <?php if (isset($firstName)): ?>
+        <div>
+            <h4>Welcome <?php echo $firstName ?>, you are logged!!!</h4>
+        </div>
     <?php endif;?>
 </body>
 </html>
