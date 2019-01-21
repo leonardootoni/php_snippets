@@ -1,0 +1,8 @@
+RewriteEngine On
+#ignore security for static/ directory
+RewriteCond %{REQUEST_FILENAME}  -f [OR]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)$ index.php [L,QSA]
+
+#RewriteRule ^.+$ index.php [L]
+#RewriteRule ^(.+)$ index.php [QSA,L]

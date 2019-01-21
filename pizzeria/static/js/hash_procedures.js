@@ -25,7 +25,7 @@ const beforeSubmitForm = () => {
   }
 };
 
-//Generates a authentication hash based on the token providaded
+//Generates an authentication hash based on the token providaded
 const generateSHA1Hash = token => {
   //generate the SHA1 Hash
   sha1(token);

@@ -1,3 +1,10 @@
+body,
+html {
+  height: 100%;
+}
+
+
+
 header {
   background-color: rgb(167, 62, 62);
   color: white;
@@ -56,4 +63,3 @@ footer {
   background-color: FireBrick;
   color: White;
 }
-
