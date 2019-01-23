@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>User Registration</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous" />
+  <style>
+    body {
+        margin-left: 15%;
+        margin-right: 15%;
+      }
+      form {
+        background-color: rgb(192, 190, 254);
+      }
+    </style>
+</head>
+
+<body>
+  <main class="container-fluid">
+    <form class="pl-4 pr-4">
+      <div class="col-12 mb-3">
+        <div class="row d-flex justify-content-center">
+          <h1 class="display-4">User Registration</h1>
+        </div>
+        <div class="row d-flex justify-content-center">
+          <h6 class="text-muted">* Required fields</h6>
+        </div>
+      </div>
+      <hr />
+      <div class="form-row">
+        <div class="col-6 mb-3">
+          <label class="font-weight-bold" for="firstName">First name *</label>
+          <input type="text" class="form-control" id="firstName" name="firstName" required autofocus />
+        </div>
+        <div class="col-2"></div>
+        <div class="col-4 mb-3">
+          <label class="font-weight-bold" for="lastName">Last name *</label>
+          <input type="text" class="form-control" id="lastName" name="lastName" required />
+        </div>
+      </div>
+      <hr />
+      <div class="form-row">
+        <div class="col-md-6 mb-3">
+          <label class="font-weight-bold" for="email">Email *</label>
+          <input type="text" class="form-control" id="email" name="email" required />
+        </div>
+        <div class="col-2"></div>
+        <div class="col-2 mb-3">
+          <label class="font-weight-bold" for="zipCode">Zip Code *</label>
+          <input type="text" class="form-control" id="zipCode" name="zipCode" required />
+        </div>
+      </div>
+      <hr />
+      <div class="form-row">
+        <div class="col-md-3 mb-3">
+          <label class="font-weight-bold" for="userName">User Name *</label>
+          <input type="text" class="form-control" id="userName" name="userName" required />
+        </div>
+      </div>
+      <hr />
+      <div class="form-row">
+        <div class="col-md-3 mb-3">
+          <label class="font-weight-bold" for="passWord">Password *</label>
+          <input type="password" class="form-control" id="password" name="password" required />
+        </div>
+        <div class="col-md-5 mb-3"></div>
+        <div class="col-md-3 mb-3">
+          <label class="font-weight-bold" for="confirmPassword">Confirm Password *</label>
+          <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" required />
+        </div>
+      </div>
+      <hr />
+      <div class="form-group">
+        <div class="form-row">
+          <div class="col-2 d-inline">
+            <label class="checkbox-inline">
+              <input id="genreRock" type="checkbox" name="genre[]" value="Rock" />&nbsp;Rock
+            </label>
+          </div>
+          <div class="col-2 d-inline">
+            <label class="checkbox-inline">
+              <input id="genrePop" type="checkbox" name="genre[]" value="Pop" />&nbsp;Pop
+            </label>
+          </div>
+          <div class="col-2 d-inline">
+            <label class="checkbox-inline">
+              <input id="genreBluegrass" type="checkbox" name="genre[]" value="Bluegrass" />&nbsp;Bluegrass
+            </label>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="col-2 d-inline">
+            <label class="checkbox-inline">
+              <input id="genreBlues" type="checkbox" name="genre[]" value="Blues" />&nbsp;Blues
+            </label>
+          </div>
+          <div class="col-2 d-inline">
+            <label class="checkbox-inline"> <input type="checkbox" name="genre[]" value="Jazz" />&nbsp;Jazz </label>
+          </div>
+          <div class="col-2 d-inline">
+            <label class="checkbox-inline">
+              <input id="genreCountry" type="checkbox" name="genre[]" value="Country" />&nbsp;Country
+            </label>
+          </div>
+        </div>
+      </div>
+      <hr />
+      <div class="form-row">
+        <div>
+          <span class="font-weight-bold">Would you like to receive e-mail notifications on our special sales?</span>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="radioQuestion" id="inlineRadio1" checked="checked" value="Yes" />
+          <label class="form-check-label" for="inlineRadio1">Yes</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="radioQuestion" id="inlineRadio2" value="No" />
+          <label class="form-check-label" for="inlineRadio2">No</label>
+        </div>
+      </div>
+      <hr />
+      <div class="form-row d-flex justify-content-center pb-5">
+        <input class="btn btn-primary mr-2" type="submit" value="submit" />
+        <button id="resetBnt" class="btn btn-secondary">Reset</button>
+      </div>
+    </form>
+  </main>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+  <script>
+    document.getElementById("resetBnt").addEventListener("click", e => {
+      document.getElementById("firstName").value = "";
+      document.getElementById("lastName").value = "";
+      document.getElementById("email").value = "";
+      document.getElementById("zipCode").value = "";
+      document.getElementById("userName").value = "";
+      document.getElementById("password").value = "";
+      document.getElementById("confirmPassword").value = "";
+      document.getElementById("genreRock").value = "";
+
+      const checkBox = document.getElementsByName("genre[]");
+      checkBox.forEach(c => {
+        c.checked = null;
+      });
+
+      document.getElementById("inlineRadio1").checked = true;
+    });
+  </script>
+</body>
+
+</html>

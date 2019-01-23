@@ -37,17 +37,28 @@ function removeQueryString($requestURI)
 function dispatchRoute($route)
 {
     $controller = route_manager::getInstance()->getControllerForRoute($route);
-
-    if ((\strpos($controller, constants::PUBLIC_CONTROLLERS) !== false) ||
-        (\strpos($controller, constants::STATIC_CONTENT)) !== false) {
-        require_once dirname(__FILE__) . "/" . $controller;
-    } else {
-        //
-        // The controller is not public. Apply the SecurityFilter
-        // A redirect to the login page will be done by the filter if the user not survive. :)
-        ///
+    $test = \strpos($controller, constants::PUBLIC_CONTROLLERS);
+    if ((\strpos($controller, constants::PUBLIC_CONTROLLERS) === false)) {
+        /* The controller is not public. Apply the SecurityFilter
+         * A redirect to login page will be done if the user not survive in the Filter. :)
+         */
         security_filter::getInstance()->validateUserSession();
-        require_once dirname(__FILE__) . "/" . $controller;
     }
+
+    require_once dirname(__FILE__) . "/" . $controller;
+
+    /**
+    if ((\strpos($controller, constants::PUBLIC_CONTROLLERS) !== false)) {
+    //Not require scurity filter
+    require_once dirname(__FILE__) . "/" . $controller;
+    } else {
+    //
+    // The controller is not public. Apply the SecurityFilter
+    // A redirect to the login page will be done by the filter if the user not survive. :)
+    ///
+    security_filter::getInstance()->validateUserSession();
+    require_once dirname(__FILE__) . "/" . $controller;
+    }
+     */
 
 }
