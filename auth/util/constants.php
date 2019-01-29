@@ -5,7 +5,8 @@
 class constants
 {
 
-    public const MODULE_NAME = "pizzeria";
+    //Defines the module name. Must start and end with /
+    public const MODULE_NAME = "/projects/auth/";
 
     //Default App Home page
     public const HOME_PAGE = "login";
@@ -13,7 +14,7 @@ class constants
     public const HOME_PAGE_INTRANET = "home";
 
     //Default login page address
-    public const LOGIN_PAGE = "/" . self::MODULE_NAME . "/login";
+    public const LOGIN_PAGE = self::MODULE_NAME . "login";
 
     //The session lifespan limit in seconds. Default 300 seconds (5 min).
     public const SESSION_DURATION_IN_SECONDS = 5;

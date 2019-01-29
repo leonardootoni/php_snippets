@@ -24,30 +24,32 @@ class route_manager
     {
         $controller = null;
         $registredRoutes = routes::getInstance()->getRoutes();
-        $staticResourseRoutes = routes::getInstance()->getRoutesStaticResources();
+        //$staticResourseRoutes = routes::getInstance()->getRoutesStaticResources();
 
         /*Static resources like css and js also do requests.
          *For this cases, the controller will be the given route.*/
         //TODO: To check if this case can be avoided through Apache .htaccess
-        $isStaticResource = false;
+        //$isStaticResource = false;
+        /**
         foreach ($staticResourseRoutes as $staticRoute) {
-            $test = (\strpos($route, $staticRoute) !== false);
-            if ((\strpos($route, $staticRoute) !== false)) {
-                $isStaticResource = true;
-                $controller = $route;
-                break;
-            }
+        $test = (\strpos($route, $staticRoute) !== false);
+        if ((\strpos($route, $staticRoute) !== false)) {
+        $isStaticResource = true;
+        $controller = $route;
+        break;
         }
+        }
+         */
 
-        if (!$isStaticResource) {
-            if (array_key_exists($route, $registredRoutes)) {
-                //route was found
-                $controller = $registredRoutes[$route];
-            } else {
-                //route not registred in the controll
-                $controller = constants::_404_CONTROLLER;
-            }
+        //if (!$isStaticResource) {
+        if (array_key_exists($route, $registredRoutes)) {
+            //route was found
+            $controller = $registredRoutes[$route];
+        } else {
+            //route not registred in the controll
+            $controller = constants::_404_CONTROLLER;
         }
+        //}
 
         return $controller;
     }

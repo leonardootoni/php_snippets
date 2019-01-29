@@ -16,7 +16,7 @@ dispatchRoute($route);
  */
 function removeModuleNameFromRoute($requestURI)
 {
-    $moduleName = "/" . constants::MODULE_NAME . "/";
+    $moduleName = constants::MODULE_NAME;
     $requestURI = str_replace($moduleName, "", $requestURI);
     return (!empty($requestURI) ? $requestURI : constants::HOME_PAGE);
 }
@@ -37,7 +37,7 @@ function removeQueryString($requestURI)
 function dispatchRoute($route)
 {
     $controller = route_manager::getInstance()->getControllerForRoute($route);
-    $test = \strpos($controller, constants::PUBLIC_CONTROLLERS);
+    //$test = \strpos($controller, constants::PUBLIC_CONTROLLERS);
     if ((\strpos($controller, constants::PUBLIC_CONTROLLERS) === false)) {
         /* The controller is not public. Apply the SecurityFilter
          * A redirect to login page will be done if the user not survive in the Filter. :)
